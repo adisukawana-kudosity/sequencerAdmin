@@ -49,11 +49,14 @@ export default function LoginPage() {
     <div className="flex flex-1 items-center justify-center bg-zinc-50 px-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-900 text-white">
-            <span className="text-base font-semibold">S</span>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/kudosity-brand.jpg"
+            alt="Kudosity"
+            className="h-10 w-auto"
+          />
           <div className="text-center">
-            <h1 className="text-xl font-semibold tracking-tight">Sequencer Admin</h1>
+            <h1 className="text-xl font-semibold tracking-tight text-zinc-900">Sequencer Admin</h1>
             <p className="mt-1 text-sm text-zinc-500">Sign in to continue to the dashboard</p>
           </div>
         </div>
@@ -64,7 +67,7 @@ export default function LoginPage() {
         >
           <div className="flex flex-col gap-4">
             <label className="flex flex-col gap-1.5">
-              <span className="text-sm font-medium text-zinc-700">Email</span>
+              <span className="text-sm font-medium text-zinc-900">Email</span>
               <input
                 type="email"
                 required
@@ -72,12 +75,12 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="h-10 rounded-md border border-zinc-200 bg-white px-3 text-sm placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/5"
+                className="h-10 rounded-md border border-zinc-200 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/5"
               />
             </label>
 
             <label className="flex flex-col gap-1.5">
-              <span className="text-sm font-medium text-zinc-700">Password</span>
+              <span className="text-sm font-medium text-zinc-900">Password</span>
               <input
                 type="password"
                 required
@@ -85,7 +88,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="h-10 rounded-md border border-zinc-200 bg-white px-3 text-sm placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/5"
+                className="h-10 rounded-md border border-zinc-200 bg-white px-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-900/5"
               />
             </label>
 

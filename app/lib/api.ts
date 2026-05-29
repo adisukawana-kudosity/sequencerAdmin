@@ -408,6 +408,114 @@ export function fetchMessageQueueList({
   );
 }
 
+// --- wallpaper module ---------------------------------------------------
+export type WallpaperBucket = {
+  period: string;
+  total: number;
+  executed: number;
+  taken: number;
+  pending: number;
+  skipped: number;
+};
+
+export type WallpaperTotals = Omit<WallpaperBucket, "period">;
+
+export type WallpaperRecapResponse = {
+  status: string;
+  period: string;
+  from: string;
+  to: string;
+  totals: WallpaperTotals;
+  data: WallpaperBucket[];
+};
+
+export function fetchWallpaperRecap(
+  period: "hour" | "day" | "week" | "month",
+  from?: string,
+  to?: string,
+  signal?: AbortSignal,
+) {
+  const params = new URLSearchParams({ period });
+  if (from) params.set("from", from);
+  if (to) params.set("to", to);
+  return apiFetch<WallpaperRecapResponse>(
+    `/adminapi/wallpaperRecap?${params.toString()}`,
+    { signal },
+  );
+}
+
+export type WallpaperRow = {
+  id: number;
+  dateAddedGMT: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  mobile: string | null;
+  file_id: string | null;
+  image_url: string | null;
+  destination_url: string | null;
+  hasTaken: string | null;
+  hasExecute: string | null;
+  needExecute: string | null;
+  transmitListId: number | null;
+  idWallpaperContact: number | null;
+  resultImageUrl: string | null;
+  [key: string]: unknown;
+};
+
+export type WallpaperListResponse = {
+  status: string;
+  total: number;
+  limit: number | null;
+  offset: number;
+  page: number;
+  total_pages: number;
+  has_next: boolean;
+  period: string | null;
+  from: string;
+  to: string;
+  search: string | null;
+  data: WallpaperRow[];
+};
+
+export type FetchWallpaperListArgs = {
+  from?: string;
+  to?: string;
+  search?: string;
+  hasTaken?: "yes" | "no";
+  hasExecute?: "yes" | "no";
+  needExecute?: "yes" | "no";
+  limit?: number;
+  offset?: number;
+  signal?: AbortSignal;
+};
+
+export function fetchWallpaperList({
+  from,
+  to,
+  search,
+  hasTaken,
+  hasExecute,
+  needExecute,
+  limit = 20,
+  offset = 0,
+  signal,
+}: FetchWallpaperListArgs) {
+  const params = new URLSearchParams({
+    limit: String(limit),
+    offset: String(offset),
+  });
+  if (from) params.set("from", from);
+  if (to) params.set("to", to);
+  if (search) params.set("search", search);
+  if (hasTaken) params.set("hasTaken", hasTaken);
+  if (hasExecute) params.set("hasExecute", hasExecute);
+  if (needExecute) params.set("needExecute", needExecute);
+  return apiFetch<WallpaperListResponse>(
+    `/adminapi/wallpaperList?${params.toString()}`,
+    { signal },
+  );
+}
+
 export type FetchWebhookListArgs = {
   from?: string;
   to?: string;

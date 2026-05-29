@@ -41,6 +41,15 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    key: "wallpaper",
+    label: "Wallpaper",
+    icon: "M4 4h16v16H4zM4 14l4-4 4 4 4-4 4 4M9 9a1 1 0 1 0 0-.001Z",
+    children: [
+      { href: "/dashboard/wallpaper", label: "Overview" },
+      { href: "/dashboard/wallpaper/logs", label: "Logs" },
+    ],
+  },
+  {
     key: "users",
     label: "Users",
     href: "/dashboard/users",
@@ -160,10 +169,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="flex min-h-screen flex-1 bg-zinc-50 text-zinc-900">
       <aside className="hidden w-60 shrink-0 flex-col border-r border-zinc-200 bg-white px-4 py-6 md:flex">
         <div className="flex items-center gap-2 px-2 pb-8">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 text-white">
-            <span className="text-sm font-semibold">S</span>
-          </div>
-          <span className="text-sm font-semibold tracking-tight">Sequencer</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/kudosity-brand.jpg"
+            alt="Kudosity"
+            className="h-7 w-auto"
+          />
         </div>
 
         <nav className="flex flex-col gap-0.5">
